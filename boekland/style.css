@@ -1,0 +1,36 @@
+body{
+        background-color: #f6f1e5 ;
+}
+.winkelwagen{
+    text-decoration: none;
+     color: black;
+}
+.inloggen{
+    text-decoration: none;
+    color: black;
+}
+.knoppen{
+    text-decoration:none;
+    color: black;
+}
+button {
+    display: inline-block;
+    font-size: 17px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #f6f1e5;
+    background-color: #f6f1e5;
+    border: none;
+    justify-content: center;
+}
+
+button:hover {
+    background-color: #f6f1e5;
+}
+
+button:active {
+    background-color:  #f6f1e5;
+    transform: translateY(4px);
+}
