@@ -7,6 +7,10 @@ Om ervoor te zorgen dat dit programma lokaal gedraaid kan worden moet je een paa
 Download het bestand en pak de .zip uit naar een plaats naar keuzen.
 Importeer het webshop.sql bestand.
 
+# Het kan zijn dat door de wifi waar je mee verbonden bent het niet goed werkt dus probeer meerden wifi's als het er niet goed uitziet!!
+
+De zoekbalk werkt niet want ik had daar niet genoeg tijd en kennis voor.
+
 Deze aplicatie is gemaakt met de programmeertalen: PHP, BootStrap, HTML, CSS en de book API van google.
 
 # reflectie 

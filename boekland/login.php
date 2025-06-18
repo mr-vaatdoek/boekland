@@ -130,7 +130,7 @@ if (empty($boeken)) {
                             </div>
                             <div>
                                 <label for="password">Wachtwoord</label>
-                                <input type="text" class="form-control" name="password" id="password">
+                                <input type="password" class="form-control" name="password" id="password">
                             </div>
                             <div>
                                 <button>
