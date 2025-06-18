@@ -6,18 +6,21 @@ if (isset($_POST['btn'])) {
     $_SESSION['books'] = $books;
     $booksReindex = array_values($_SESSION['books']);
     $_SESSION['books'] = $booksReindex;
-
-    header('Location: afrekenen.php');
+    header('location: afrekenen.php');
     exit;
 } else {
-    array_values($_SESSION['books']);
-    $ids = $_SESSION['books'];
-    $boeken = [];
-}
-foreach ($ids as $key => $id) {
-    $results = file_get_contents('https://www.googleapis.com/books/v1/volumes/' . $id);
-    $boek = json_decode($results, true);
-    $boeken[] = $boek;
+    if (isset($_SESSION['books'])) {
+        array_values($_SESSION['books']);
+        $ids = $_SESSION['books'];
+        $boeken = [];
+        foreach ($ids as $key => $id) {
+            $results = file_get_contents('https://www.googleapis.com/books/v1/volumes/' . $id);
+            $boek = json_decode($results, true);
+            $boeken[] = $boek;
+
+        }
+
+    }
 }
 
 
@@ -90,45 +93,51 @@ foreach ($ids as $key => $id) {
             <div class="col text-center fs-2 mt-5 d-flex flex-column gap-4">
                 <p>winkelwagen</p>
                 <?php
-                foreach ($boeken as $key => $boek) {
-                    ?>
-                    <div class="card d-flex flex-row">
-                        <div class="col-2">
-                            <div class="">
-                                <form action="" method="post">
-                                    <input type="hidden" value="<?= $key ?>" name="id">
-                                    <input type="submit" value="delete" name="btn">
-                                </form>
+                if (count($boeken) > 0) {
+                    foreach ($boeken as $key => $boek) {
+                ?>
+                        <div class="card d-flex flex-row">
+                            <div class="col-2">
+                                <div class="">
+                                    <form action="" method="post">
+                                        <input type="hidden" value="<?= $key ?>" name="id">
+                                        <input type="submit" value="delete" name="btn">
+                                    </form>
+                                </div>
+                                <?php if (array_key_exists('imageLinks', $boek['volumeInfo']) && $boek['volumeInfo']['imageLinks']['thumbnail']) : ?>
+                                    <img src="<?= $boek['volumeInfo']['imageLinks']['thumbnail'] ?>" class="img-fluid">
+                                <?php else : ?>
+                                    <img src="default.jpg" class="img-fluid">
+                                <?php endif; ?>
                             </div>
-                            <?php if (array_key_exists('imageLinks', $boek['volumeInfo']) && $boek['volumeInfo']['imageLinks']['thumbnail']) : ?>
-                                <img src="<?= $boek['volumeInfo']['imageLinks']['thumbnail'] ?>" class="img-fluid">
-                            <?php else : ?>
-                                <img src="default.jpg" class="img-fluid">
-                            <?php endif; ?>
+                            <div class="col-10">
+                                <ul class="list-unstyled">
+                                    <?php if (array_key_exists('volumeInfo', $boek) && array_key_exists('title', $boek['volumeInfo'])) : ?>
+                                        <li><b>Titel:</b> <?= $boek['volumeInfo']['title'] ?></li>
+                                    <?php endif; ?>
+                                    <li><b>pagina's:</b> <?= $boek['volumeInfo']['pageCount'] ?></li>
+                                    <?php if (array_key_exists('volumeInfo', $boek) && array_key_exists('authors', $boek['volumeInfo'])) : ?>
+                                        <li><b>Auteur:</b> <?= implode(", ", $boek['volumeInfo']['authors']) ?></li>
+                                    <?php else : ?>
+                                        <li><b>Auteur:</b> Sjaak frisjes</li>
+                                    <?php endif; ?>
+                                    <?php if (array_key_exists('saleInfo', $boek) && $boek['saleInfo']['saleability'] == 'FOR_SALE') : ?>
+                                        <li><b>Prijs:</b> &euro;<?= $boek['saleInfo']['retailPrice']['amount'] ?></li>
+                                    <?php else : ?>
+                                        <li><b>Prijs:</b> &euro; 30,00</li>
+                                    <?php endif; ?>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="col-10">
-                            <ul class="list-unstyled">
-                                <?php if (array_key_exists('volumeInfo', $boek) && array_key_exists('title', $boek['volumeInfo'])) : ?>
-                                    <li><b>Titel:</b> <?= $boek['volumeInfo']['title'] ?></li>
-                                <?php endif; ?>
-                                <li><b>pagina's:</b> <?= $boek['volumeInfo']['pageCount'] ?></li>
-                                <?php if (array_key_exists('volumeInfo', $boek) && array_key_exists('authors', $boek['volumeInfo'])) : ?>
-                                    <li><b>Auteur:</b> <?= implode(", ", $boek['volumeInfo']['authors']) ?></li>
-                                <?php else : ?>
-                                    <li><b>Auteur:</b> Sjaak frisjes</li>
-                                <?php endif; ?>
-                                <?php if (array_key_exists('saleInfo', $boek) && $boek['saleInfo']['saleability'] == 'FOR_SALE') : ?>
-                                    <li><b>Prijs:</b> &euro;<?= $boek['saleInfo']['retailPrice']['amount'] ?></li>
-                                <?php else : ?>
-                                    <li><b>Prijs:</b> &euro; 30,00</li>
-                                <?php endif; ?>
-                            </ul>
-                        </div>
-                    </div>
                     <?php
+                    }
+                    ?>
+                    <a href="dankjewel.php" class="bg-success rounded-2 mt-5 text-decoration-none text-white">bestellen</a>
+                <?php } else { 
+                    echo 'Er zitten nog geen boeken in je winkelmandje';
                 }
                 ?>
-                <a href="dankjewel.php" class="bg-success rounded-2 mt-5 text-decoration-none text-white">bestellen</a>
+
             </div>
         </div>
         <script

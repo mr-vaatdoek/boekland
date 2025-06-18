@@ -7,6 +7,8 @@ curl_setopt($results, CURLOPT_RETURNTRANSFER, true);
 $response = curl_exec($results);
 curl_close($results);
 $boeken = json_decode($response, true);
+
+
 ?>
 <!doctype html>
 <html lang="en">
