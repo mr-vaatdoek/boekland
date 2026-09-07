@@ -18,4 +18,4 @@ Het was een leuke opdracht. ik heb wel gemerkt dat het veel te hoog ingeschat wa
 maar ondanks alles heb ik er wel veel van geleerd en kijk ik er naar uit om op dit niveau te programmeren en het ook te begrijpen.
 
 # Disclaimer
-ik heb deze opdracht gemaakt met iemand die ver boven mijn niveau programmeerde. er zijn veel dingen die ik nu anders zou doen. er zijn ook veel dingen die ik niet meer begrijp van deze site.
+ik heb deze opdracht gemaakt met iemand die ver boven mijn niveau programmeerde. er zijn veel dingen die ik nu anders zou doen. er zijn ook veel dingen die ik niet begrijp in deze site. maar ik heb hem wel gemaakt ondanks dat het met iemand anders was die meer tijd hier in heeft gestoken. daarom staat "boekland" bij deze projecten
