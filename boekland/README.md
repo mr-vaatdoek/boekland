@@ -16,3 +16,6 @@ Deze aplicatie is gemaakt met de programmeertalen: PHP, BootStrap, HTML, CSS en 
 # reflectie 
 Het was een leuke opdracht. ik heb wel gemerkt dat het veel te hoog ingeschat was voor het niveau waar ik nu ben
 maar ondanks alles heb ik er wel veel van geleerd en kijk ik er naar uit om op dit niveau te programmeren en het ook te begrijpen.
+
+# Disclaimer
+ik heb deze opdracht gemaakt met iemand die ver boven mijn niveau programmeerde. er zijn veel dingen die ik nu anders zou doen. er zijn ook veel dingen die ik niet meer begrijp van deze site.
